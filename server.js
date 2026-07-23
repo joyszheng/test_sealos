@@ -4,7 +4,9 @@ const path = require('path');
 const { URL } = require('url');
 const os = require('os');
 
-const PORT = Number(process.env.PORT) || 8080;
+// Sealos 网关会转发到「网络配置里的容器端口」。
+// 优先读环境变量 PORT；若平台注入了空字符串，Number('') === 0，需兜底。
+const PORT = Number(process.env.PORT) > 0 ? Number(process.env.PORT) : 8080;
 const HOST = process.env.HOST || '0.0.0.0';
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const startedAt = new Date();
@@ -120,9 +122,15 @@ const server = http.createServer((req, res) => {
   serveStatic(req, res, pathname);
 });
 
+server.on('error', (err) => {
+  console.error('Server failed to start:', err);
+  process.exit(1);
+});
+
 server.listen(PORT, HOST, () => {
   console.log(`[${NODE_ENV}] Server running at http://${HOST}:${PORT}/`);
   console.log(`Health check: http://${HOST}:${PORT}/api/health`);
+  console.log(`Bind check OK — gateway must target container port ${PORT}`);
 });
 
 function shutdown(signal) {
