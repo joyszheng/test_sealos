@@ -1,0 +1,19 @@
+{
+  "name": "test-sealos",
+  "version": "1.0.0",
+  "description": "Sealos DevBox Node.js 示例应用",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "NODE_ENV=development node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "sealos",
+    "devbox",
+    "nodejs"
+  ],
+  "license": "MIT"
+}

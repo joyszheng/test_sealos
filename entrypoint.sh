@@ -2,24 +2,22 @@
 
 app_env=${1:-development}
 
-# Define build target
-build_target="hello_world"
+# 应用入口文件（生产环境只负责启动，不在这里做构建）
+build_target="server"
 
-# Development environment commands
+# 开发环境
 dev_commands() {
     echo "Running development environment commands..."
     NODE_ENV=development node "${build_target}.js"
 }
 
-# Production environment commands
-# ※Compiled before release
+# 生产环境（Release / Deploy 时使用）
 prod_commands() {
     echo "Running production environment commands..."
     NODE_ENV=production node "${build_target}.js"
 }
 
-# Check environment variables to determine the running environment
-if [ "$app_env" = "production" ] || [ "$app_env" = "prod" ] ; then
+if [ "$app_env" = "production" ] || [ "$app_env" = "prod" ]; then
     echo "Production environment detected"
     prod_commands
 else

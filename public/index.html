@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>test-sealos · Sealos 示例应用</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="bg"></div>
+    <main class="container">
+      <header class="hero">
+        <div class="badge">Sealos DevBox · Node.js</div>
+        <h1>Hello, Sealos 👋</h1>
+        <p class="subtitle">
+          这是一个可直接在
+          <a href="https://gzg.sealos.run/" target="_blank" rel="noreferrer">gzg.sealos.run</a>
+          上开发、发布、部署的示例应用。
+        </p>
+        <div class="actions">
+          <button id="btn-hello" class="btn primary">调用 /api/hello</button>
+          <button id="btn-info" class="btn">查看运行信息</button>
+          <a class="btn ghost" href="/api/health" target="_blank">健康检查</a>
+        </div>
+      </header>
+
+      <section class="grid">
+        <article class="card">
+          <h2>接口返回</h2>
+          <pre id="output" class="output">点击上方按钮试试 API…</pre>
+        </article>
+
+        <article class="card">
+          <h2>部署清单</h2>
+          <ol class="steps">
+            <li>在 DevBox 中开发并验证 <code>bash entrypoint.sh</code></li>
+            <li>在控制台创建 Release（打成 OCI 镜像）</li>
+            <li>点击 Deploy 部署到 Sealos Cloud</li>
+            <li>通过公网域名访问应用</li>
+          </ol>
+          <p class="hint">详细步骤见项目 README.md</p>
+        </article>
+      </section>
+
+      <footer>
+        <span id="status">正在检测服务状态…</span>
+      </footer>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
